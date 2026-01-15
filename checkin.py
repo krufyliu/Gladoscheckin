@@ -3,7 +3,7 @@ import json
 import os
 
 def send_ntfy(title: str, content: str):
-	sckey = os.environ.get("SENDKEY", "")
+    sckey = os.environ.get("SENDKEY", "")
     if not sckey:
         print("Not push")
     else:
@@ -14,10 +14,6 @@ def send_ntfy(title: str, content: str):
 # github workflows
 # -------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    
-    # pushdeer key 申请地址 https://www.pushdeer.com/product.html
-    
-
     # 推送内容
     title = ""
     success, fail, repeats = 0, 0, 0        # 成功账号数量 失败账号数量 重复签到账号数量
@@ -94,6 +90,3 @@ if __name__ == '__main__':
     
 
     send_ntfy(title, context)
-
-
-
