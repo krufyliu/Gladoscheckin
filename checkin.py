@@ -7,8 +7,7 @@ def send_ntfy(title: str, content: str):
     if not sckey:
         print("Not push")
     else:
-		requests.post(f'https://ntfy.sh/{sckey}', data=f'{title}\n{content}'.encode(encoding='utf-8'))
-
+        requests.post(f'https://ntfy.sh/{sckey}', data=f'{title}\n{content}'.encode(encoding='utf-8'))
 
 # -------------------------------------------------------------------------------------------
 # github workflows
