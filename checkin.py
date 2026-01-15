@@ -2,14 +2,21 @@ import requests
 import json
 import os
 
-from pypushdeer import PushDeer
+def send_ntfy(title: str, content: str):
+	sckey = os.environ.get("SENDKEY", "")
+    if not sckey:
+        print("Not push")
+    else:
+		requests.post(f'https://ntfy.sh/{sckey}', data=f'{title}\n{content}'.encode(encoding='utf-8'))
+
 
 # -------------------------------------------------------------------------------------------
 # github workflows
 # -------------------------------------------------------------------------------------------
 if __name__ == '__main__':
+    
     # pushdeer key 申请地址 https://www.pushdeer.com/product.html
-    sckey = os.environ.get("SENDKEY", "")
+    
 
     # 推送内容
     title = ""
@@ -85,12 +92,8 @@ if __name__ == '__main__':
         # 推送内容 
         title = f'# 未找到 cookies!'
     
-    # 推送消息
-    # 未设置 sckey 则不进行推送
-    if not sckey:
-        print("Not push")
-    else:
-        pushdeer = PushDeer(pushkey=sckey) 
-        pushdeer.send_text(title, desp=context)
+
+    send_ntfy(title, context)
+
 
 
